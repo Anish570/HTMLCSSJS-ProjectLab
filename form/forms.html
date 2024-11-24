@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      form {
+        position: relative;
+      }
+      #loader {
+        display: none;
+        position: absolute;
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 70px;
+        height: 70px;
+        border: 5px solid #d1d0d0d7;
+        border-bottom: 5px solid blue;
+        border-radius: 50%;
+        animation: spin 1.3s linear infinite;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      #errormsg {
+        display: none;
+      }
+      table {
+        display: none;
+        width: fit-content;
+        color: black;
+        border: 2px solid black; /* Adds border around the table */
+        border-collapse: separate; /* Allows space between cells */
+        border-spacing: 10px; /* Space between cells (horizontal & vertical) */
+      }
+      td {
+        padding: 3px 10px;
+        text-align: center;
+      }
+      #responseDiv {
+        margin: 10px 0px;
+        color: red;
+      }
+    </style>
+    <script>
+      function showDiv() {
+        document.getElementById("responsetable").style.display = "block";
+      }
+      async function handleSubmit(event) {
+        event.preventDefault();
+        document.getElementById("loader").style.display = "block";
+        // Get form data
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        // Log the data for debugging
+        console.log(`Name: ${name}, Email: ${email}, Password: ${password}`);
+
+        // Create the request payload
+        const data = { name, email, password };
+
+        try {
+          // Make a POST request
+          const response = await fetch(
+            "https://rest-api-7esz.onrender.com/api/user/register",
+            {
+              method: "POST", // HTTP method
+              headers: {
+                "Content-Type": "application/json", // Send data in JSON format
+              },
+              body: JSON.stringify(data), // Stringify the data for the request body
+            }
+          );
+          const result = await response.json();
+          const errorbox = document.getElementById("errormsg");
+          // Handle response
+          if (response.ok) {
+            const { name, email } = result.data;
+            console.log("Response from server:", result);
+            errorbox.style.display = "none";
+            document.getElementById("loader").style.display = "none";
+            alert("Form submitted successfully!");
+            document.getElementById("username").innerText = `${name}`;
+            document.getElementById("useremail").innerText = `${email}`;
+            showDiv();
+          } else {
+            document.getElementById("loader").style.display = "none";
+            console.error("Error submitting form:", response.status);
+            errorbox.innerHTML = result.message;
+            errorbox.style.display = "block";
+            alert("Failed to submit the form!");
+          }
+        } catch (error) {
+          document.getElementById("loader").style.display = "none";
+          console.error("Error during fetch:", error);
+          alert("An error occurred while submitting the form.");
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <form onsubmit="handleSubmit(event)">
+      <div id="loader"></div>
+      <fieldset>
+        <legend>User Information</legend>
+        <label for="name">Enter Name</label>
+        <br />
+        <input type="text" id="name" name="name" required />
+        <br />
+        <label for="email">Enter Email</label>
+        <br />
+        <input type="email" id="email" name="email" required />
+        <br />
+        <label for="password">Enter Password</label>
+        <br />
+        <input aria-label="password" type="password" id="password" required />
+        <br />
+        <input type="submit" value="Submit" />
+      </fieldset>
+    </form>
+
+    <div id="responseDiv">
+      <p id="errormsg"></p>
+      <table id="responsetable">
+        <tr>
+          <th>S.N</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Status</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td id="username">user name</td>
+          <td id="useremail">email@gmail.com</td>
+          <td style="color: green">success</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>
