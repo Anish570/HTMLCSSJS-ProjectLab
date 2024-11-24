@@ -36,11 +36,22 @@ body{
     backdrop-filter: blur(15px);
 }
 
+.image{
+    width: 100%;
+    overflow: hidden;
+    height: 150px;
+    object-fit: cover;
+}
 
 .movie_card img {
     width: 100%;
-    height: auto;
-    object-fit: cover;
+    height: 100%;
+    transition: transform 0.3s ease;
+}
+
+img:hover{
+    transform: scale(1.2);
+    
 }
 
 .details {
@@ -68,7 +79,7 @@ body{
     text-overflow: ellipsis;
     line-clamp: 3;
 }
-.ratings{
+.ratings-section{
     margin: 30px 0px 10px 0px;
     width: 100%;
     bottom: 5px;
@@ -76,4 +87,13 @@ body{
     justify-content: space-between;
     font-size: 12px;
     font-weight: 500px;
+}
+.ratings{
+    display: flex;
+    gap: 4px;
+    align-items: center;
+
+}
+.ratings i{
+    color: red;
 }
