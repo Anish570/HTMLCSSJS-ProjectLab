@@ -1,3 +1,5 @@
+const baseapi_url = "https://rest-api-7esz.onrender.com/api/user";
+
 function showDiv() {
   document.getElementById("responsetable").style.display = "table";
 }
@@ -12,14 +14,11 @@ async function handleSubmit(event) {
   const data = { name, email, password };
 
   try {
-    const response = await fetch(
-      "https://rest-api-7esz.onrender.com/api/user/register",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      }
-    );
+    const response = await fetch(`${baseapi_url}/register`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
 
     const result = await response.json();
     const errorbox = document.getElementById("errormsg");
@@ -46,7 +45,7 @@ async function handleSubmit(event) {
 
 async function allUsers() {
   try {
-    const response = await fetch("https://rest-api-7esz.onrender.com/api/user");
+    const response = await fetch(`${baseapi_url}/all`);
     const result = await response.json();
 
     if (response.ok) {
