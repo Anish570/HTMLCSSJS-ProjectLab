@@ -1,0 +1,209 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.6)), url('https://www.example.com/cinema-background.jpg');
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: white;
+    overflow: hidden;
+  }
+
+  form {
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.85);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 450px;
+    margin: 10px;
+  }
+
+  fieldset {
+    border: none;
+    padding: 0;
+  }
+
+  legend {
+    font-size: 1.6em;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #ffcc00; /* Gold color for cinematic vibe */
+  }
+
+  label {
+    font-size: 1.1em;
+    margin: 10px 0;
+    display: block;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0 20px 0;
+    border: 2px solid #333;
+    border-radius: 6px;
+    font-size: 1em;
+    outline: none;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+  }
+
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  input[type="password"]:focus {
+    border-color: #ffcc00;
+    box-shadow: 0 0 10px rgba(255, 204, 0, 0.8);
+  }
+
+  input[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background: #ffcc00;
+    color: #333;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  input[type="submit"]:hover {
+    background: #ff9900;
+  }
+
+  #loader {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 5px solid #f0f0f0;
+    border-bottom: 5px solid #ffcc00;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1.3s linear infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  #errormsg {
+    display: none;
+    color: red;
+    margin: 20px 0;
+    text-align: center;
+    font-size: 1.1em;
+  }
+
+  table {
+    width: 100%;
+    margin-top: 40px;
+    border-collapse: collapse;
+    display: none;
+    background: rgba(0, 0, 0, 0.7);
+  }
+
+  table th,
+  table td {
+    padding: 12px;
+    border: 1px solid #333;
+    text-align: center;
+    font-size: 1em;
+  }
+
+  table th {
+    background-color: #ffcc00;
+    color: black;
+  }
+
+  table tr:nth-child(even) {
+    background-color: #333;
+  }
+
+  table tr:hover {
+    background-color: #444;
+  }
+
+  table td {
+    font-size: 1em;
+  }
+
+  /* Media Queries for responsiveness */
+  @media (max-width: 768px) {
+    body {
+      height: auto;
+      padding: 10px;
+    }
+
+    form {
+      padding: 20px;
+      max-width: 100%;
+    }
+
+    legend {
+      font-size: 1.4em;
+    }
+
+    label {
+      font-size: 1em;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="submit"] {
+      padding: 10px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    form {
+      padding: 15px;
+    }
+
+    legend {
+      font-size: 1.2em;
+    }
+
+    label {
+      font-size: 0.9em;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="submit"] {
+      padding: 8px;
+      font-size: 0.9em;
+    }
+
+    #loader {
+      width: 40px;
+      height: 40px;
+    }
+
+    table {
+      font-size: 0.9em;
+    }
+
+    table th,
+    table td {
+      padding: 8px;
+    }
+  }
