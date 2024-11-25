@@ -3,53 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <!-- <style>
-      form {
-        position: relative;
-      }
-      #loader {
-        display: none;
-        position: absolute;
-        top: 30%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 70px;
-        height: 70px;
-        border: 5px solid #d1d0d0d7;
-        border-bottom: 5px solid blue;
-        border-radius: 50%;
-        animation: spin 1.3s linear infinite;
-      }
-      @keyframes spin {
-        0% {
-          transform: rotate(0deg);
-        }
-        100% {
-          transform: rotate(360deg);
-        }
-      }
-      #errormsg {
-        display: none;
-        margin: 10px 0px;
-        color: red;
-      }
-      table {
-        display: none;
-        width: fit-content;
-        color: black;
-        border: 2px solid black; /* Adds border around the table */
-        border-collapse: separate; /* Allows space between cells */
-        border-spacing: 20px; /* Space between cells (horizontal & vertical) */
-      }
-    </style> -->
+    <title>Register & Login</title>
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
     <form onsubmit="handleSubmit(event)">
       <div id="loader"></div>
       <fieldset>
-        <legend>User Information</legend>
+        <legend>Register to View Other</legend>
         <label for="name">Enter Name</label>
         <br />
         <input type="text" id="name" name="name" required />
@@ -62,25 +23,15 @@
         <br />
         <input aria-label="password" type="password" id="password" required />
         <br />
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Register" />
+        <p class="already-account">
+          Already registered. click here to <a href="./loginform.html">login</a>
+        </p>
       </fieldset>
     </form>
 
     <div id="loader">Loading...</div>
     <div id="errormsg"></div>
-
-    <h2>All Users</h2>
-    <table id="responsetable">
-      <thead>
-        <tr>
-          <th>S.N</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
   </body>
   <script src="./script.js"></script>
 </html>
