@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="./style.css" />
+    <title>login to view users</title>
+  </head>
+  <script>
+    const checkUser = () => {
+      const access_Token = localStorage.getItem("accessToken");
+      if (access_Token) {
+        window.location.href = "./allusers.html";
+      }
+    };
+    const baseapi_url = "https://rest-api-7esz.onrender.com/api/user";
+    const login = async (event) => {
+      event.preventDefault();
+      document.getElementById("loader").style.display = "block";
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const data = { email, password };
+      try {
+        const response = await fetch(`${baseapi_url}/login`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        });
+        const result = await response.json();
+        console.log("Response:", result);
+        localStorage.setItem("accessToken", result.accessToken);
+        if (response.ok) {
+          window.location.href = "./allusers.html";
+        }
+      } catch (err) {
+        document.getElementById("loader").style.display = "none";
+        console.error("Error in fetch: ", err);
+        document.getElementById("errormsg").textContent =
+          "Error in fetching data";
+      }
+    };
+    window.onload = checkUser;
+  </script>
+  <body>
+    <form onsubmit="login(event)">
+      <div id="loader"></div>
+      <fieldset>
+        <legend>Login Information</legend>
+        <br />
+        <label for="email">Enter Email</label>
+        <br />
+        <input type="email" id="email" name="email" required />
+        <br />
+        <label for="password">Enter Password</label>
+        <br />
+        <input aria-label="password" type="password" id="password" required />
+        <br />
+        <input type="submit" value="Login" />
+        <p>
+          Haven't registered yet. Click here to
+          <a href="./index.html">register</a>
+        </p>
+      </fieldset>
+    </form>
+
+    <div id="loader">Loading...</div>
+    <div id="errormsg"></div>
+  </body>
+</html>
