@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>all registered users</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div class="flex items-center w-full justify-between">
+      <h2 class="text-center w-full">All Users</h2>
+
+      <div class="w-fit" onclick="logout()">
+        <a href="./loginform.html">Logout</a>
+      </div>
+    </div>
+    <table id="responsetable">
+      <thead>
+        <tr>
+          <th>S.N</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </body>
+  <script>
+    const access_Token = localStorage.getItem("accessToken");
+    if (!access_Token) {
+      window.location.href = "./loginform.html";
+    }
+    const logout = () => {
+      localStorage.removeItem("accessToken");
+      window.location.href = "./loginform.html";
+    };
+    console.log("Access Token: " + access_Token);
+    const baseapi_url = "https://rest-api-7esz.onrender.com/api/user";
+    function showDiv() {
+      document.getElementById("responsetable").style.display = "table";
+    }
+    async function allUsers() {
+      try {
+        const response = await fetch(`${baseapi_url}/all`);
+        const result = await response.json();
+
+        if (response.ok) {
+          console.log("All users:", result.data);
+
+          // Clear the table before adding new rows
+          const tableBody = document.querySelector("#responsetable tbody");
+          tableBody.innerHTML = ""; // Clear any previous rows
+          let count = 1;
+          result.data.forEach((user) => {
+            const row = tableBody.insertRow();
+            const snCell = row.insertCell();
+            const nameCell = row.insertCell();
+            const emailCell = row.insertCell();
+            const statusCell = row.insertCell();
+            snCell.innerText = count;
+            nameCell.innerText = user.name;
+            emailCell.innerText = user.email;
+            statusCell.innerText = user.status ? "Active" : "Success";
+            statusCell.style.color = "green";
+
+            count++;
+          });
+
+          // Make the table visible
+          showDiv();
+        } else {
+          console.error("Error fetching users:", response.status);
+          alert("Failed to fetch users!");
+        }
+      } catch (error) {
+        console.error("Error during fetch:", error);
+        alert("An error occurred while fetching all users.");
+      }
+    }
+    allUsers();
+    // Fetch all users when the page loads
+    window.onload = allUsers;
+  </script>
+</html>
