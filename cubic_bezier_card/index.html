@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cubic-Bezier Card</title>
+    <style>
+      :root {
+        --default-image: url("./poster.webp");
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        height: 100vh;
+        background-color: #f1f1f1;
+      }
+      main {
+        display: flex;
+        align-items: center;
+        flex-wrap: nowrap;
+        gap: 2px;
+      }
+      .cubic-bezier {
+        width: 250px;
+        height: 300px;
+        filter: grayscale(100%);
+        background-image: var(--default-image);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        transition: all 0.5s cubic-bezier(0.86, -2, 0.42, 2);
+      }
+
+      .cubic-bezier:hover {
+        width: 400px;
+        filter: grayscale(0%);
+      }
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div
+        class="cubic-bezier"
+        style="
+          --default-image: url('https://imdbnepal.vercel.app/_next/image?url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Foriginal%2Fq8eejQcg1bAqImEV8jh8RtBD4uH.jpg&w=2048&q=75');
+        "
+      ></div>
+      <div
+        class="cubic-bezier"
+        style="
+          --default-image: url('https://imdbnepal.vercel.app/_next/image?url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Foriginal%2F9g0jrpKJrB4kdMTzjgAV9tZtrNn.jpg&w=2048&q=75');
+        "
+      ></div>
+      <div
+        class="cubic-bezier"
+        style="
+          --default-image: url('https://imdbnepal.vercel.app/_next/image?url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Foriginal%2FlBoHzOgft2QfpjkVVvZCqeM4ttT.jpg&w=2048&q=75');
+        "
+      ></div>
+      <div
+        class="cubic-bezier"
+        style="
+          --default-image: url('https://imdbnepal.vercel.app/_next/image?url=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Foriginal%2Fn4ycOGj2tRLfINTJQ3wl0vNYqpR.jpg&w=2048&q=75');
+        "
+      ></div>
+    </main>
+    <h1>Cubic-Bezier</h1>
+  </body>
+</html>
