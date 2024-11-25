@@ -97,3 +97,26 @@ img:hover{
 .ratings i{
     color: red;
 }
+/* style.css */
+.like-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: blue;
+  }
+  
+  .like-button:hover {
+    transform: scale(1.2);
+    transition: transform 0.2s;
+  }
+  
+  #like-count {
+    display: inline-block;
+    font-size: 1rem;
+    margin-left: 0.5rem;
+    color: black;
+  }
+  
+ 
+  
